@@ -9,7 +9,7 @@ class AccountController(object):
             pickle_controller = PickleController() 
             pickle_controller.getPickle()
             account_list = pickle_controller.account_list
-            
+
             new_account = Account(
                 identifier = str(uuid.uuid4()),
                 title = title,
@@ -24,13 +24,15 @@ class AccountController(object):
             return False
         return True
 
-    def read_account(self, identifier):
+    def read_account(self, title):
         try: 
             pickle_controller = PickleController() 
             pickle_controller.getPickle()
             account_list = pickle_controller.account_list
 
-            print()
+            for account in account_list:
+                if account.title == title:
+                    return account
         except Exception:
             return False
         return True
@@ -41,69 +43,56 @@ class AccountController(object):
             pickle_controller.getPickle()
             account_list = pickle_controller.account_list
 
-            for account in account_list:
-                print(account)
+            for index, account in enumerate(account_list):
+                print(f'{index+1}. {account.title}')
         except Exception as e:
             print(e)
             return False
         return True
 
-    def update_account(self, account_to_update, new_username, new_email):
+    def update_account(self, title, new_title, new_username, new_email, new_password):
+        try:
+            pickle_controller = PickleController()
+            pickle_controller.getPickle()
+            account_list = pickle_controller.account_list
+
+            for account in account_list:
+                if title == account.title:
+                    account.title = new_title
+                    account.username = new_username
+                    account.email = new_email
+                    account.password = new_password
+            pickle_controller.setPickle()
+            return True
+        except Exception:
+            return False
+
+    def delete_account(self, title):
         try:
             pickle_controller = PickleController() 
             pickle_controller.getPickle()
             account_list = pickle_controller.account_list
 
             for account in account_list:
-                if account_to_update.identifer == account.identifier:
-                    account.username = new_username
-                    account.email = new_email
-
-            pickle_controller.setPickle()
-            return True
-        except Exception:
-            return False
-
-    def delete_account(self, candidate_identifier):
-        try:
-            pickle_controller = PickleController() 
-            pickle_controller.getPickle()
-            account_list = pickle_controller.account_list
-
-            for i in account_list:
-                if candidate_identifier == i.identifer:
-                    account_list.remove(i)
+                if title == account.title:
+                    account_list.remove(account)
 
             pickle_controller.setPickle()
             return True
         except Exception:
             return False
     
-    def recover_password(self, candidate_identifier, new_password):
+    def control_unique_title(self):
         try:
             pickle_controller = PickleController() 
             pickle_controller.getPickle()
             account_list = pickle_controller.account_list
 
-            identifier_found = False
-
-            for i in account_list:
-                if account_identifier == i.identifer:
-                    i.password = new_password
-                    identifier_found = True
+            title = input("Please insert the account Title: ")
+            for account in account_list:
+                if title == account.title:
+                    print("NO")
+                else:
                     break
-
-            if not identifier_found:
-                return False
-
-            pickle_controller.setPickle()
         except Exception:
             return False
-        return True
-
-    def control_unique_identifier(self, candidate_identifier):
-        if not (candidate_identifier == self.identifer): 
-            return candidate_identifier
-        else:
-            return candidate_identifier+1
-        
