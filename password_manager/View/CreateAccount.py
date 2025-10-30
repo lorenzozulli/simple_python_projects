@@ -1,20 +1,15 @@
 from os import system
 from Model.Account import Account
 from Controller.AccountController import AccountController
+from Controller.ViewController import ViewController
 
 class CreateAccount(object):
-    def draw_title():
-        system("clear||cls")
+    header = 'CREATE ACCOUNT'
 
-        title = 'CREATE ACCOUNT'
-        width = 30
-
-        print('-' * width)
-        print(title.center(width))
-        print('-' * width)
-
-    def show_create_account():
-        CreateAccount.draw_title()
+    @classmethod 
+    def show_create_account(cls):
+        view_controller = ViewController()
+        view_controller.draw_header(cls.header)
 
         print('1. Create account') 
         print('B. Go back')
@@ -32,12 +27,13 @@ class CreateAccount(object):
                 case _:
                     print("Invalid operation, Please retry")
 
-
-    def create_account_prompt():
+    @classmethod
+    def create_account_prompt(cls):
         account_controller = AccountController()
+        view_controller = ViewController()
         while True:
             try:
-                CreateAccount.draw_title()
+                view_controller.draw_header(cls.header)
                 
                 title = account_controller.control_unique_title()
                 username = input("Insert the Username: ")
@@ -57,8 +53,7 @@ class CreateAccount(object):
                 print('-' * 30)
                 print("Please Retry")
                 print('-' * 30)
-        controller = AccountController()
-        controller.create_account(title, username, email, password)
+        account_controller.create_account(title, username, email, password)
 
         from View.MainMenu import MainMenu
         main_menu = MainMenu()

@@ -3,24 +3,23 @@ from View.CreateAccount import CreateAccount
 from View.ReadAccount import ReadAccount
 from View.UpdateAccount import UpdateAccount
 from View.DeleteAccount import DeleteAccount
+from Controller.ViewController import ViewController
 import sys
 
 class MainMenu(object):
-    def show_main_menu(self):
-        system("clear||cls")
+    header = 'MAIN MENU'
 
-        title = 'MAIN MENU'
-        width = 30
+    @classmethod
+    def show_main_menu(cls):
+        view_controller = ViewController()
+        view_controller.draw_header(cls.header)
 
-        print('-' * width)
-        print(title.center(width))
-        print('-' * width)
         print('1. Create a new account')
         print('2. View your accounts')
         print('3. Modify one of your accounts')
         print('4. Delete one of your Accounts')
         print('Q. Quit')
-        print('-' * width)
+        print('-' * 30)
 
         while True:
             operation = input('Please insert the number of the operation you want to execute: ').strip().lower()

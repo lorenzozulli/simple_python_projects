@@ -1,19 +1,14 @@
 from os import system
 from Controller.AccountController import AccountController
+from Controller.ViewController import ViewController
 
 class UpdateAccount(object):
-    def draw_title():
-        system("clear||cls")
+    header = 'UPDATE ACCOUNT'
 
-        title = 'UPDATE ACCOUNT'
-        width = 30
-
-        print('-' * width)
-        print(title.center(width))
-        print('-' * width)
-
-    def show_update_account():
-        UpdateAccount.draw_title()
+    @classmethod
+    def show_update_account(cls):
+        view_controller = ViewController()
+        view_controller.draw_header(cls.header)
 
         print('1. Update one of your accounts') 
         print('B. Go back')
@@ -31,8 +26,10 @@ class UpdateAccount(object):
                 case _:
                     print("Invalid operation, Please retry")
 
-    def update_account_prompt():
-        UpdateAccount.draw_title()
+    @classmethod
+    def update_account_prompt(cls):
+        view_controller = ViewController()
+        view_controller.draw_header(cls.header)
         account_controller = AccountController()
         account_controller.show_accounts_list()
 

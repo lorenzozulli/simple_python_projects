@@ -1,19 +1,14 @@
 from os import system
 from Controller.AccountController import AccountController
+from Controller.ViewController import ViewController
 
 class DeleteAccount(object):
-    def draw_title():
-        system("clear||cls")
+    header = 'DELETE ACCOUNT'
 
-        title = 'DELETE ACCOUNT'
-        width = 30
-
-        print('-' * width)
-        print(title.center(width))
-        print('-' * width)
-
-    def show_delete_account():
-        DeleteAccount.draw_title()
+    @classmethod
+    def show_delete_account(cls):
+        view_controller = ViewController()
+        view_controller.draw_header(cls.header)
 
         print('1. Delete one of your accounts') 
         print('B. Go back')
@@ -31,8 +26,10 @@ class DeleteAccount(object):
                 case _:
                     print("Invalid operation, Please retry")
 
-    def delete_account_prompt():
-        DeleteAccount.draw_title()
+    @classmethod
+    def delete_account_prompt(cls):
+        view_controller = ViewController()
+        view_controller.draw_header(cls.header)
         account_controller = AccountController()
         account_controller.show_accounts_list()
 
