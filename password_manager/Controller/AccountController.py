@@ -97,6 +97,6 @@ class AccountController(object):
                         break
                 else:
                     return title
-        except Exception ase:
+        except Exception:
             print(f"An error occurred: {e}")
             return False
