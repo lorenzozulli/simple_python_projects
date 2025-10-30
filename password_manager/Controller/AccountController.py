@@ -6,9 +6,6 @@ import uuid
 class AccountController(object):
     def create_account(self, title, username, email, password):
         try:
-            pickle_controller = PickleController() 
-            pickle_controller.getPickle()
-            account_list = pickle_controller.account_list
 
             new_account = Account(
                 identifier = str(uuid.uuid4()),
@@ -17,6 +14,9 @@ class AccountController(object):
                 email = email,
                 password = password
             )
+            pickle_controller = PickleController() 
+            pickle_controller.getPickle()
+            account_list = pickle_controller.account_list
 
             account_list.append(new_account)
             pickle_controller.setPickle()
