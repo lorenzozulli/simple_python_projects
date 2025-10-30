@@ -84,15 +84,19 @@ class AccountController(object):
     
     def control_unique_title(self):
         try:
-            pickle_controller = PickleController() 
+            pickle_controller = PickleController()
             pickle_controller.getPickle()
             account_list = pickle_controller.account_list
 
-            title = input("Please insert the account Title: ")
-            for account in account_list:
-                if title == account.title:
-                    print("NO")
+            while True:
+                title = input("Please insert the account Title: ")
+                
+                for account in account_list:
+                    if title == account.title:
+                        print("Invalid value, Please Retry (Title already exists)")
+                        break
                 else:
-                    break
-        except Exception:
+                    return title
+        except Exception ase:
+            print(f"An error occurred: {e}")
             return False
