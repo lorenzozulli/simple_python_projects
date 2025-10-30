@@ -11,7 +11,7 @@ class PickleController(object):
                 identifier = 0,
                 title = 'admin',
                 username = 'admin',
-                email = '',
+                email = 'admin@admin',
                 password = 'admin'
             )
             account_list.append(new_account)
