@@ -4,6 +4,7 @@ from Controller.ViewController import ViewController
 
 class UpdateAccount(object):
     header = 'UPDATE ACCOUNT'
+    width = 30
 
     @classmethod
     def show_update_account(cls):
@@ -12,7 +13,7 @@ class UpdateAccount(object):
 
         print('1. Update one of your accounts') 
         print('B. Go back')
-        print('-' * 30)
+        print('-' * cls.width)
 
         while True:
             operation = input('Please insert the number of the operation you want to execute: ').strip().lower()

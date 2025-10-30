@@ -8,6 +8,7 @@ import sys
 
 class MainMenu(object):
     header = 'MAIN MENU'
+    width = 30
 
     @classmethod
     def show_main_menu(cls):
@@ -19,7 +20,7 @@ class MainMenu(object):
         print('3. Modify one of your accounts')
         print('4. Delete one of your Accounts')
         print('Q. Quit')
-        print('-' * 30)
+        print('-' * cls.width)
 
         while True:
             operation = input('Please insert the number of the operation you want to execute: ').strip().lower()

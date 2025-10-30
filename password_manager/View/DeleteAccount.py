@@ -4,6 +4,7 @@ from Controller.ViewController import ViewController
 
 class DeleteAccount(object):
     header = 'DELETE ACCOUNT'
+    width = 30
 
     @classmethod
     def show_delete_account(cls):
@@ -12,7 +13,7 @@ class DeleteAccount(object):
 
         print('1. Delete one of your accounts') 
         print('B. Go back')
-        print('-' * 30)
+        print('-' * cls.width)
 
         while True:
             operation = input('Please insert the number of the operation you want to execute: ').strip().lower()

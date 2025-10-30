@@ -5,6 +5,7 @@ from Controller.ViewController import ViewController
 
 class CreateAccount(object):
     header = 'CREATE ACCOUNT'
+    width = 30
 
     @classmethod 
     def show_create_account(cls):
@@ -13,7 +14,7 @@ class CreateAccount(object):
 
         print('1. Create account') 
         print('B. Go back')
-        print('-' * 30)
+        print('-' * cls.width)
 
         while True:
             operation = input('Please insert the number of the operation you want to execute: ').strip().lower()
@@ -50,9 +51,9 @@ class CreateAccount(object):
                     password = input("Insert the Password: ")
                     break
             except ValueError:
-                print('-' * 30)
+                print('-' * cls.width)
                 print("Please Retry")
-                print('-' * 30)
+                print('-' * cls.width)
         account_controller.create_account(title, username, email, password)
 
         from View.MainMenu import MainMenu
